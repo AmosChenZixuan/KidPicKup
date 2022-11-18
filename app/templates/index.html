@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<p class="mt-2">Enter Car Registration Here</p>
+
+
+<hr class="mt-0 mb-4">
+
+<div class="grid-container">
+
+    {% include 'pickupList.html' with group=0 name='Class A' data="ab" %}
+    {% include 'pickupList.html' with group=1 name='Class B' data="abcdefgfdsfdfsef" %}
+  
+</div>
+
+{% endblock %}

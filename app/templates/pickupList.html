@@ -1,0 +1,20 @@
+  
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{name}}</h5>
+        <ul class="list-group list-group-flush">
+            {% for value in data %} 
+                <li class="list-group-item" onmouseover="showBtn('{{group}}','{{forloop.counter0}}')" 
+                                            onmouseout="hideBtn('{{group}}','{{forloop.counter0}}')">
+                    <div >
+                        {{value}} 
+                        <button id="btn_{{group}}_{{forloop.counter0}}" class="mark_btn btn btn-outline-dark" type="button" onclick="">
+                            Mark
+                        </button>
+                    </div>
+                </li>
+            {% endfor %}
+            
+        </ul>
+    </div>
+</div>

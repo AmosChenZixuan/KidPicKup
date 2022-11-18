@@ -1,0 +1,48 @@
+body {
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.container {
+    max-width: 85%;
+    color:white
+}
+
+.nav {
+  background-image: radial-gradient(circle, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  border-radius: 25px;
+  width: 75%;
+  margin: auto
+}
+.nav a {
+  color: rgb(43, 43, 43);
+  transition: ease-in-out color .15s;
+  text-decoration: none;
+}
+.nav a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10%;
+}
+
+.mark_btn {
+  border-radius: 25px;
+  margin: .25rem;
+  float: right;
+  opacity: 0;
+  transition: opacity .5s; 
+}
+
+.card {
+  margin: .25rem;
+  max-height: 450px;
+  overflow:auto;
+}
+
+.card-title {
+  color: rgb(43, 43, 43);
+}
