@@ -18,3 +18,7 @@ class Vehicle(models.Model):
 
     def __str__(self):
         return self.registration_id
+
+class WaitingList(models.Model):
+    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    vehicle_id = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
