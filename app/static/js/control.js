@@ -13,6 +13,12 @@ function signUp(el){
     const input = document.getElementById('car-registration-input')
     if (input.value !== ''){
         axios.post(`/signUp/${input.value}/`)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err.response.data)
+            })
     }
         
 }

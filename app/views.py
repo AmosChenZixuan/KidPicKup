@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.http import JsonResponse
 
 
@@ -36,5 +36,26 @@ def index(request):
 
 def signUp(request, carid):
     if request.method == 'POST':
-        print(carid)
+        if len(carid) != 6 or not carid.isalnum():
+            return HttpResponseBadRequest('Invalid Car Registration Number')
+
+        cars = Vehicle.objects
+        students = Student.objects
+        
+        try:
+            car = cars.get(registration_id=carid)
+        except Vehicle.DoesNotExist:
+            return HttpResponseNotFound('Car Registration Number Not Found')
+        student = students.get(pk=car.student_id.id)
+        if student.status == 1:
+            return HttpResponseBadRequest(f'Student({student}) Already Added')
+        elif student.status == 2:
+            return HttpResponseBadRequest(f'Student({student}) Already Left')
+        student.status = 1
+        student.save()
+        new_wl = WaitingList()
+        new_wl.student_id = student 
+        new_wl.vehicle_id = car
+        new_wl.save()
+        
         return HttpResponse(200)
