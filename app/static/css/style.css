@@ -7,84 +7,13 @@ body {
     color:white
 }
 
-.nav {
-  background-image: radial-gradient(circle, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
-  border-radius: 25px;
-  width: 75%;
-  margin: auto
-}
-.nav a {
-  color: #fff;
-  transition: ease-in-out color .15s;
-  text-decoration: none;
-}
-.nav a:hover {
-  color: rgb(43, 43, 43);
-  text-decoration: none;
-}
-
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10%;
 }
 
-.mark_btn {
-  border-radius: 25px;
-  margin: .25rem;
-  opacity: 0;
-  transition: opacity .5s; 
-}
-
-.card {
-  margin: .25rem;
-}
-
-.card-title {
-  color: rgb(43, 43, 43);
-}
-
- /* Stlyish Scrollbar */
- /* https://mdbootstrap.com/docs/b4/jquery/javascript/scroll/ */
-.scrollbar-rare-wind {
-  max-height: 450px;
-  overflow:auto;
-  scrollbar-color: #a8edea #F5F5F5;
-}
-
-.scrollbar-rare-wind::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-  background-color: #F5F5F5;
-  border-radius: 10px;
-}
-
-.scrollbar-rare-wind::-webkit-scrollbar {
-  width: 12px;
-  background-color: #F5F5F5;
-}
-
-.scrollbar-rare-wind::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#a8edea), to(#fed6e3));
-  background-image: -webkit-linear-gradient(bottom, #a8edea 0%, #fed6e3 100%);
-  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
-}
-
-/* make sure student name and mark button are center aligned */
-.flex-container {
-  display: flex;
-  align-items: center;
-  height: 2.5rem;
-}
-
-/* button is right aligned */
-.right-align {
-  position: absolute;
-  right:0;
-  margin-right:1.5rem;
-}
-
+/* input field */
 .center-input {
   width: 50%;
   display: block;
@@ -93,7 +22,6 @@ body {
 }
 
 /* modal */
-
 .bg-error {
   background-color: pink;
 }
