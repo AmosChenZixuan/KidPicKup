@@ -8,6 +8,10 @@ function hideBtn(group, btn_id){
     btn.style.opacity = 0
 }
 
+function displayError(message){
+    $('#error-message').text(message)
+    $('#error-box').modal('toggle')
+}
 
 function signUp(el){
     const input = document.getElementById('car-registration-input')
@@ -18,8 +22,10 @@ function signUp(el){
             })
             .catch(err => {
                 console.log(err.response.data)
+                displayError(err.response.data)
             })
     }
+    input.value = ''
         
 }
 

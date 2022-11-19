@@ -91,3 +91,9 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+
+/* modal */
+
+.bg-error {
+  background-color: pink;
+}
