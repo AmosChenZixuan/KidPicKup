@@ -71,3 +71,12 @@ def signOut(request, studentid):
         student.save()
         return HttpResponse(200)
 
+
+def getAllCars(request):
+    if request.method == 'GET':
+        data = []
+        cars = Vehicle.objects.all()
+        for car in cars:
+            data.append(f"{car} ({car.student_id})")
+
+        return JsonResponse(data, safe=False)

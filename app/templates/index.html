@@ -7,7 +7,7 @@
 <div class="input-group">
     <div class="center-input mb-4 mt-4">
         <label for="car-registration-input">Sign Up</label>
-        <div style="display:flex">
+        <div style="display:flex" class="autocomplete">
             <input id="car-registration-input" type="search" class="form-control" />
             <button id="signup-button" type="button" class="btn btn-outline-light" onclick="signUp(this)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -16,11 +16,9 @@
             </button>
         </div>
     </div>
-    
 </div>
-
-
-
+{% load static %}
+<script type="text/javascript" src="{% static 'js/autocomplete.js' %}"></script>
 
 <hr class="mt-0 mb-4">
 
