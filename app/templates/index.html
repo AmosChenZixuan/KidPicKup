@@ -3,7 +3,23 @@
 {% block content %}
 
 
-<p class="mt-2">Enter Car Registration Here</p>
+<!-- Sign up form -->
+<div class="input-group">
+    <div class="center-input mb-4 mt-4">
+        <label for="car-registration-input">Sign Up</label>
+        <div style="display:flex">
+            <input id="car-registration-input" type="search" class="form-control" />
+            <button id="signup-button" type="button" class="btn btn-outline-light" onclick="signUp(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+</div>
+
+
 
 
 <hr class="mt-0 mb-4">

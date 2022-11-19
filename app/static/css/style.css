@@ -14,12 +14,12 @@ body {
   margin: auto
 }
 .nav a {
-  color: rgb(43, 43, 43);
+  color: #fff;
   transition: ease-in-out color .15s;
   text-decoration: none;
 }
 .nav a:hover {
-  color: #fff;
+  color: rgb(43, 43, 43);
   text-decoration: none;
 }
 
@@ -83,4 +83,11 @@ body {
   position: absolute;
   right:0;
   margin-right:1.5rem;
+}
+
+.center-input {
+  width: 50%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }

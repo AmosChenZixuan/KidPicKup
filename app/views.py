@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
+
 
 # Create your views here.
 from .models import Student, Vehicle, WaitingList
@@ -33,5 +33,8 @@ def index(request):
             context['Stats'][class_id]['left'] += 1
     return render(request, 'index.html', context)
 
-def home(request, model):
-    context = {}
+
+def signUp(request, carid):
+    if request.method == 'POST':
+        print(carid)
+        return HttpResponse(200)
