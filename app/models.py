@@ -11,6 +11,13 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+    def json(self):
+        return {
+            'id': self.id,
+            'name': str(self),
+            'class': self.classes,
+        }
+
 
 class Vehicle(models.Model):
     student_id      = models.ForeignKey(Student, on_delete=models.CASCADE)

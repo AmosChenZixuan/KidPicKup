@@ -22,3 +22,13 @@ function signUp(el){
     }
         
 }
+
+function signOut(student_id){
+    axios.post(`/signOut/${student_id}/`)
+    .then(response => {
+        console.log(response)
+    })
+    .catch(err => {
+        console.log(err.response.data)
+    })
+}

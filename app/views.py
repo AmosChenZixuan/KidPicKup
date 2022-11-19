@@ -24,9 +24,9 @@ def index(request):
             context['Stats'][class_id]['not_left'] += 1
         
         elif student.status == 1: # waiting to be picked up
-            student_name = str(student)
             wl_item = wl.get(student_id = student.id)
-            data = f"{student_name} ({wl_item.vehicle_id})"
+            data = student.json()
+            data['car'] = wl_item.vehicle_id
             context['Classes'][class_id].append(data)
             context['Stats'][class_id]['not_left'] += 1
         else: # picked up, left the school
@@ -59,3 +59,13 @@ def signUp(request, carid):
         new_wl.save()
         
         return HttpResponse(200)
+
+def signOut(request, studentid):
+    if request.method == 'POST':
+        student = Student.objects.get(pk=studentid)
+        if student.status != 1:
+            return HttpResponseBadRequest('Illegal Operation')
+        student.status = 2
+        student.save()
+        return HttpResponse(200)
+
