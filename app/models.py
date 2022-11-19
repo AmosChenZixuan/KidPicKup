@@ -13,7 +13,7 @@ class Student(models.Model):
 
 
 class Vehicle(models.Model):
-    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student_id      = models.ForeignKey(Student, on_delete=models.CASCADE)
     registration_id = models.CharField(max_length=6, validators=[MinLengthValidator(6)])
 
     def __str__(self):
