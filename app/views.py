@@ -11,18 +11,23 @@ import json
 
 def index(request):
     context = {
-        'ClassA': [],
-        'ClassB': [],
+        'Classes': [[] for _ in range(2)],
+        'Stats':  [{'left':     0,
+                    'not_left': 0} for _ in range(2)],
     }
     students = Student.objects.all()
     for student in students:
+        class_id = student.classes
+        if student.status == 0: # still in school and not been called
+            context['Stats'][class_id]['not_left'] += 1
+        
         if student.status == 0: # should be 1
             data = str(student)
-            if student.classes == 0:
-                context['ClassA'].append(data)
-            else:
-                context['ClassB'].append(data)
-
+            context['Classes'][class_id].append(data)
+            context['Stats'][class_id]['not_left'] += 1
+        else: # picked up, left the school
+            context['Stats'][class_id]['left'] += 1
+            
     return render(request, 'index.html', context)
 
 def home(request, model):
