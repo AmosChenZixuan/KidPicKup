@@ -36,21 +36,23 @@ def index(request):
 
 def signUp(request, carid):
     if request.method == 'POST':
+        # validate input format
         if len(carid) != 6 or not carid.isalnum():
             return HttpResponseBadRequest('Invalid Car Registration Number')
 
         cars = Vehicle.objects
-        students = Student.objects
-        
+        # fetch car 
         try:
             car = cars.get(registration_id=carid)
         except Vehicle.DoesNotExist:
             return HttpResponseNotFound('Car Registration Number Not Found')
-        student = students.get(pk=car.student_id.id)
+        # fetch associated student
+        student = car.student_id
         if student.status == 1:
             return HttpResponseBadRequest(f'Student({student}) Already Added')
         elif student.status == 2:
             return HttpResponseBadRequest(f'Student({student}) Already Left')
+        # update student and create new waitlist item
         student.status = 1
         student.save()
         new_wl = WaitingList()
