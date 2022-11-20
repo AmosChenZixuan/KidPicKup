@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -82,3 +82,9 @@ def getAllCars(request):
             data.append(f"{car} ({car.student_id})")
 
         return JsonResponse(data, safe=False)
+
+
+def reset(request):
+    import os 
+    os.system('python insertData.py')
+    return redirect(index)

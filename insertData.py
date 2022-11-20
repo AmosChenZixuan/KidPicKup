@@ -5,7 +5,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kidpickup.settings')
 django.setup()
 from app.models import Student, Vehicle, WaitingList
 import random
-
+random.seed(10)
 
 
 LAST_NAME = ['Alice', 'Bob', 'Chris', 'David', 'Ellis', 'Frank', 'Grey', "Hart", 'Ivy', "Jean", "Kevin"]
@@ -48,7 +48,7 @@ def generate_data(n, classes, cid, file):
         cars = []
         # at least one car associated to a student
         cars.append(new_car(student, classes))
-        while random.random() < .3:
+        while random.random() < .1:
             cars.append(new_car(student, classes))
 
         file.write(f"{student}:{' '.join(car.registration_id for car in cars)}\n")
