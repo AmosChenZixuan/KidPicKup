@@ -1,15 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.http import JsonResponse
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
+from rest_framework.decorators import api_view
 
 # Create your views here.
 from .models import Student, Vehicle, WaitingList
-import json
+from .consumers import notify_student_added, notify_student_removed
 
 
-
+@api_view(['GET'])
 def index(request):
     context = {
         'Classes': [[] for _ in range(2)],
@@ -34,16 +33,9 @@ def index(request):
             context['Stats'][class_id]['left'] += 1
     return render(request, 'index.html', context)
 
-
+@api_view(['POST'])
 def signUp(request, carid):
     if request.method == 'POST':
-        channel_layer = get_channel_layer()
-        async_to_sync(channel_layer.group_send)(
-            'test',
-            {'type': 'enter', 'message': 'serverGotInput'}
-        )
-
-
         # validate input format
         if len(carid) != 6 or not carid.isalnum():
             return HttpResponseBadRequest('Invalid Car Registration Number')
@@ -57,9 +49,9 @@ def signUp(request, carid):
         # fetch associated student
         student = car.student_id
         if student.status == 1:
-            return HttpResponseBadRequest(f'Student({student}) Already Added')
+            return HttpResponseBadRequest(f'Student({student}) is already added')
         elif student.status == 2:
-            return HttpResponseBadRequest(f'Student({student}) Already Left')
+            return HttpResponseBadRequest(f'Student({student}) is already left')
         # update student and create new waitlist item
         student.status = 1
         student.save()
@@ -67,9 +59,10 @@ def signUp(request, carid):
         new_wl.student_id = student 
         new_wl.vehicle_id = car
         new_wl.save()
-        
+        notify_student_added(new_wl)
         return HttpResponse(200)
 
+@api_view(['POST'])
 def signOut(request, studentid):
     if request.method == 'POST':
         student = Student.objects.get(pk=studentid)
@@ -77,9 +70,10 @@ def signOut(request, studentid):
             return HttpResponseBadRequest('Illegal Operation')
         student.status = 2
         student.save()
+        notify_student_removed(student)
         return HttpResponse(200)
 
-
+@api_view(['GET'])
 def getAllCars(request):
     if request.method == 'GET':
         data = []

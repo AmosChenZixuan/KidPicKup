@@ -1,7 +1,8 @@
  /* Stlyish Scrollbar */
  /* https://mdbootstrap.com/docs/b4/jquery/javascript/scroll/ */
  .scrollbar-rare-wind {
-    max-height: 450px;
+    min-height: 200px;
+    max-height: 400px;
     overflow:auto;
     scrollbar-color: #a8edea #F5F5F5;
 }

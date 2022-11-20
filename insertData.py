@@ -3,7 +3,7 @@ import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kidpickup.settings')
 django.setup()
-from app.models import Student, Vehicle
+from app.models import Student, Vehicle, WaitingList
 import random
 
 
@@ -57,6 +57,7 @@ if __name__ == '__main__':
     # drop existing
     Student.objects.all().delete()
     Vehicle.objects.all().delete()
+    WaitingList.objects.all().delete()
 
     with open('data.txt', 'w') as file:
         generate_data(N_A, 'A', 0, file)
